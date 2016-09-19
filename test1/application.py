@@ -21,7 +21,7 @@ class Application:
 application = Application()
 
 def sigterm_handler(signal, frame):
-    print('Got a sigterm!')
+    print('Got a sigterm!!!')
     application.action = False
 
 
