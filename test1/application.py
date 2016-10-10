@@ -6,24 +6,24 @@ import threading
 class Application:
 	def __init__(self):
 		self.action = True
-		self.thread = threading.Thread(target=self.normal, args=())
-		self.thread.deamon  = True
-		self.thread.start()
 
-	def normal(self):
+	def connect(self):
+		print('Connectign...')
 		while self.action:
-			print('all normal...')
+			print('Working...')
 			time.sleep(2)
 
-	def stop(self):
-		self.thread.join()
-
-application = Application()
+	def disconnect(self):
+		print('Disconnecting...')
+		self.action = False
 
 def sigterm_handler(signal, frame):
     print('Got a sigterm!!!')
-    application.action = False
+    application.disconnect()
 
 
 signal.signal(signal.SIGTERM, sigterm_handler)
+
+application = Application()
+application.connect()
 
